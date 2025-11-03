@@ -9,7 +9,7 @@ CREATE TABLE productos_menu (
     imagen_url VARCHAR(255),
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+/*
 INSERT INTO productos_menu (nombre, descripcion, precio, categoria) VALUES
 ('Espresso Clásico', 'El corazón de todo, intenso y aromático.', 3.50, 'Cafe'),
 ('Latte Cremoso', 'Perfecta armonía de leche vaporizada y espresso.', 4.99, 'Cafe'),
@@ -19,7 +19,7 @@ INSERT INTO productos_menu (nombre, descripcion, precio, categoria) VALUES
 ('Cheesecake de Frutos Rojos', 'Tarta de queso suave y cremosa con salsa de frutos rojos frescos.', 6.50, 'Pastel'),
 ('Americano', 'Doble shot de espresso diluido en agua caliente.', 3.00, 'Cafe'),
 ('Tarta de Zanahoria', 'Bizcocho especiado con nueces y glaseado de queso crema.', 5.75, 'Pastel');
-
+*/
 INSERT INTO productos_menu (nombre, descripcion, precio, categoria, imagen_url) VALUES
 ('Espresso Clásico', 'El corazón de todo, intenso y aromático.', 3.50, 'Cafe','assets/images/expressoclasico.png'),
 ('Latte Cremoso', 'Perfecta armonía de leche vaporizada y espresso.', 4.99, 'Cafe','assets/images/lattecremoso.png'),
