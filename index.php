@@ -1,37 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafetería MiExpress - Saborea el Momento</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Estilos personalizados para el fondo del hero */
-        .hero-bg {
-            background-image: url('assets/images/cafeteriaBackground.png'); /* Cambia por tu imagen de café */
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800">
+<?php
+    // archivo a la base de datos
+    require 'includes/funciones.php';
+    $consulta = obtenerProductos();
+    require 'includes/templates/header.php';
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-amber-900">Delicioso</a>
-            
-            <div class="hidden md:flex space-x-6">
-                <a href="#inicio" class="text-gray-600 hover:text-amber-700 transition duration-300">Inicio</a>
-                <a href="#menu" class="text-gray-600 hover:text-amber-700 transition duration-300">Menú</a>
-                <a href="#ubicacion" class="text-gray-600 hover:text-amber-700 transition duration-300">Ubicación</a>
-                <a href="#contacto" class="text-gray-600 hover:text-amber-700 transition duration-300">Contacto</a>
-            </div>
-
-            <button class="md:hidden text-gray-600 hover:text-amber-700 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </nav>
-    </header>
+?>
 
     <section id="inicio" class="hero-bg h-96 flex items-center justify-center text-center">
         <div class="bg-black bg-opacity-50 p-8 rounded-lg">
@@ -46,7 +19,15 @@
             <h2 class="text-4xl font-bold text-center text-amber-900 mb-10">Nuestro Menú</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                <?php while( $producto = mysqli_fetch_assoc($consulta)){ ?>
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="<?php echo $producto["imagen_url"] ?>" alt="Espresso" class="w-full h-50 object-cover rounded-md mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900"><?php echo $producto["nombre"] ?></h3>
+                        <p class="text-amber-700 font-bold mt-2"><?php echo $producto["precio"] ?></p>
+                        <p class="text-gray-600 mt-1"><?php echo $producto["descripcion"] ?></p>
+                    </div>
+                <?php } ?>
+                <!-- <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                     <img src="assets/images/expressoclasico.png" alt="Espresso" class="w-full h-50 object-cover rounded-md mb-4">
                     <h3 class="text-xl font-semibold text-gray-900">Espresso Clásico</h3>
                     <p class="text-amber-700 font-bold mt-2">$3.50</p>
@@ -86,7 +67,7 @@
                     <h3 class="text-xl font-semibold text-gray-900">Cheesecake de Frutos Rojos</h3>
                     <p class="text-amber-700 font-bold mt-2">$5.50</p>
                     <p class="text-gray-600 mt-1">Una tarta de queso suave y cremosa sobre una base de galleta, coronada con una salsa brillante de frutos rojos frescos. Un postre ligero y refrescante.</p>
-                </div>
+                </div> -->
             </div>
             
             <div class="text-center mt-10">
@@ -104,15 +85,6 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-6 text-center text-sm">
-            <p>&copy; 2025 Cafetería Delicioso. Todos los derechos reservados.</p>
-            <div class="mt-2 space-x-4">
-                <a href="#" class="hover:text-amber-500">Política de Privacidad</a>
-                <a href="#" class="hover:text-amber-500">Términos de Servicio</a>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+<?php
+    require 'includes/templates/footer.php';
+?>
